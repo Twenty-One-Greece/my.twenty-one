@@ -1,5 +1,5 @@
-# expressiso
-A basic isomorphic JavaScript application with [React](http://facebook.github.io/react/), and [Express](expressjs.com).
+# Cms for travel agents
+An isomorphic JavaScript CMS biult for travel agents with [React](http://facebook.github.io/react/), and [Express](expressjs.com).
 
 ### Installation
 ```bash
@@ -8,12 +8,13 @@ npm install
 
 ### Running the app
 ```bash
-DEBUG=expressiso ./bin/www
+sudo mongod
+npm run dev
+npm run build
 ```
 
 ### Building with webpack
 ```bash
 npm run build:watch  # Watch for changes and rebuild
-npm run build        # One-off build
 ```
 
