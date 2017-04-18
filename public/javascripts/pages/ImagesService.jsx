@@ -14,7 +14,7 @@ export default class ImagesService extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { title: '', images: [], image: null }
+        this.state = { title: '', featuredImage: '', images: [], image: null }
 
         this.serviceID = this.props.routeParams.serviceID
         this.handleDropImage = this.handleDropImage.bind(this)
@@ -22,6 +22,7 @@ export default class ImagesService extends React.Component {
         this.getDestinationInfo =this.getDestinationInfo.bind(this)
         this.renderImages = this.renderImages.bind(this)
         this.handleRemoveImage = this.handleRemoveImage.bind(this)
+        this.handleSetFeaturedImage = this.handleSetFeaturedImage.bind(this)
     }
 
     componentWillMount () {
@@ -30,18 +31,25 @@ export default class ImagesService extends React.Component {
 
     getDestinationInfo () {
         axios.get(URL_FOR_SERVICES + '/one/' + this.serviceID)
-        .then((res) => this.setState({ title: res.data.title, images: res.data.images }))
+        .then((res) => this.setState({ title: res.data.title, featuredImage: res.data.featuredImage, images: res.data.images }))
     }
 
     renderImages () {
         let images = this.state.images.map((image, i) => {
-            return <Image key={i} image={image} i={i} type={'services'} handleRemoveImage={this.handleRemoveImage} />
+            return <Image key={i} image={image} i={i} type={'services'} handleRemoveImage={this.handleRemoveImage}
+            handleSetFeaturedImage={this.handleSetFeaturedImage} featuredImage={this.state.featuredImage}/>
         })
         return images
     }
 
     handleRemoveImage (fileName) {
         axios.delete(URL_FOR_SERVICES + '/one-image/' + this.serviceID + '/' + fileName)
+        .then((res) => this.getDestinationInfo())
+    }
+    
+    handleSetFeaturedImage(i) {
+        const data = { featuredImage: String(i) }
+        axios.post(URL_FOR_SERVICES + '/update/' + this.serviceID, data)
         .then((res) => this.getDestinationInfo())
     }
 

@@ -106,6 +106,7 @@ router.post('/update/:serviceID', (req, res) => {
         service.providerName = data.providerName || service.providerName
         service.departureDays = data.departureDays || service.departureDays
         service.measurementUnit = data.measurementUnit || service.measurementUnit
+        service.featuredImage = data.featuredImage || service.featuredImage
 
         service.save((err, service) => {
             if (err) return res.send(err)

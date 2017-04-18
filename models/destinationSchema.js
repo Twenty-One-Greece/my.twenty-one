@@ -10,6 +10,7 @@ const destinationsSchema = new Schema({
   include:      { type: Boolean,  default: true },
   city:         { type: String,   default: '' },
   images:       { type: Array,    default: [] },
+  featuredImage:{ type: String, default: '' },
   userID:       { type: String,   required: true },
   created_at:   Date,
   updated_at:   Date

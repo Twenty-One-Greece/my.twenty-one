@@ -96,11 +96,12 @@ router.post('/update/:destinationID', (req, res) => {
     Destination.findById(req.params.destinationID, (err, destination) => {
         if (err) return res.send(err)
 
-        destination.title       = data.title        || destination.title
-        destination.description = data.description  || destination.description
-        destination.thingsToDo  = data.thingsToDo   || destination.thingsToDo
-        destination.include     = data.include
-        destination.featured    = data.featured     || false
+        destination.title         = data.title         || destination.title
+        destination.description   = data.description   || destination.description
+        destination.thingsToDo    = data.thingsToDo    || destination.thingsToDo
+        destination.include       = data.include
+        destination.featured      = data.featured      || false
+        destination.featuredImage = data.featuredImage || destination.featuredImage
 
         destination.save((err, destination) => {
             if (err) return res.send(err)

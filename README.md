@@ -15,6 +15,6 @@ npm run build
 
 ### Building with webpack
 ```bash
-npm run build:watch  # Watch for changes and rebuild
+npm run build  # Watch for changes and rebuild
 ```
 

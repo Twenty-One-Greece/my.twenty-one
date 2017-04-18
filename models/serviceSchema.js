@@ -36,6 +36,8 @@ const serviceSchema = new Schema({
 
     description: { type: String, default: '' },
     images: { type: Array, default: [] },
+    featuredImage: { type: String, default: '' },
+    
     userID: { type: String, required: true },
     created_at: Date,
     updated_at: Date

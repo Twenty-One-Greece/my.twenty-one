@@ -7,10 +7,10 @@ export var URL
 // Set variables
 if (PROD_ENV) {
     URL = 'http://my.twenty-one.co/'
-    console.log(' PRODUCTION ENVIRONMENT ----- ' + URL)
+    console.log('PRODUCTION ENVIRONMENT ----- ' + URL)
 } else {
     URL = 'http://localhost:3000/'
-    console.log(' DEVELOPMENT ENVIRONMENT ----- ' + URL)
+    console.log('DEVELOPMENT ENVIRONMENT ----- ' + URL)
 }
 
 export const URL_FOR_USERS = URL + 'users'

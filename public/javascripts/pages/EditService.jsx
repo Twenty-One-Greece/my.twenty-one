@@ -134,7 +134,6 @@ export default class EditService extends React.Component {
         })
     }
 
-
     render() {
         if (!this.state.providerName) this.state.providerName = "Match with provider"
         
