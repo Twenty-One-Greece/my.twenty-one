@@ -10,7 +10,7 @@ npm install
 ```bash
 sudo mongod
 npm run dev
-npm run build
+npm run watch
 ```
 
 ### Building with webpack
