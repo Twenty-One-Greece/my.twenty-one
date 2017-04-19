@@ -46,7 +46,7 @@ export default class ImagesDestination extends React.Component {
     
     handleSetFeaturedImage(i) {
         const data = { featuredImage: String(i) }
-        axios.post(URL_FOR_DESTINATIONS + '/update/' + this.destinationID, data)
+        axios.post(URL_FOR_DESTINATIONS + '/update-featured-image/' + this.destinationID, data)
         .then((res) => this.getDestinationInfo())
     }
 

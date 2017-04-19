@@ -49,7 +49,7 @@ export default class ImagesService extends React.Component {
     
     handleSetFeaturedImage(i) {
         const data = { featuredImage: String(i) }
-        axios.post(URL_FOR_SERVICES + '/update/' + this.serviceID, data)
+        axios.post(URL_FOR_SERVICES + '/update-featured-image/' + this.serviceID, data)
         .then((res) => this.getDestinationInfo())
     }
 

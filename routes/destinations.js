@@ -110,4 +110,18 @@ router.post('/update/:destinationID', (req, res) => {
     })
 })
 
+
+// Update Destination by ID
+router.post('/update-featured-image/:destinationID', (req, res) => {
+    const data = req.body
+
+    Destination.findById(req.params.destinationID, (err, destination) => {
+        if (err) return res.send(err)
+        destination.featuredImage = data.featuredImage || destination.featuredImage
+        destination.save((err, destination) => {
+            if (err) return res.send(err)
+        })
+        return res.send({ message: "Destination Updated" })
+    })
+})
 module.exports = router;

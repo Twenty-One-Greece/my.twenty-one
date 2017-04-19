@@ -17,4 +17,4 @@ export const URL_FOR_USERS = URL + 'users'
 export const URL_FOR_HOME = URL + 'home'
 export const URL_FOR_DESTINATIONS = URL + 'destinations'
 export const URL_FOR_SERVICES = URL + 'services'
-export const URL_FOR_HOTELS = URL + 'hotels'
+export const URL_FOR_HOTELS = URL + 'hotels'ß

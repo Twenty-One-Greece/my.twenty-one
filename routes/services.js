@@ -106,8 +106,21 @@ router.post('/update/:serviceID', (req, res) => {
         service.providerName = data.providerName || service.providerName
         service.departureDays = data.departureDays || service.departureDays
         service.measurementUnit = data.measurementUnit || service.measurementUnit
-        service.featuredImage = data.featuredImage || service.featuredImage
 
+        service.save((err, service) => {
+            if (err) return res.send(err)
+        })
+        return res.send({ message: "Service Updated" })
+    })
+})
+
+// Update Service by ID
+router.post('/update-featured-image/:serviceID', (req, res) => {
+    const data = req.body
+
+    Service.findById(req.params.serviceID, (err, service) => {
+        if (err) return res.send(err)
+        service.featuredImage = data.featuredImage || service.featuredImage
         service.save((err, service) => {
             if (err) return res.send(err)
         })
