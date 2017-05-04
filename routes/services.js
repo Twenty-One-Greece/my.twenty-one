@@ -79,37 +79,8 @@ router.delete('/one-image/:serviceID/:fileName', (req, res) => {
 router.post('/update/:serviceID', (req, res) => {
     const data = req.body
 
-    Service.findById(req.params.serviceID, (err, service) => {
+    Service.findOneAndUpdate({ _id: req.params.serviceID }, data, (err, service) => {
         if (err) return res.send(err)
-
-        service.title = data.title || service.title
-        service.description = data.description || service.description
-        service.type = data.type || service.type
-        service.product = data.product || service.product
-        service.category = data.category || service.category
-        service.price = data.price || service.price
-        service.offer = data.offer || false
-        service.featured = data.featured || false
-        service.schedule = data.schedule || service.schedule
-        service.from = data.from || service.from
-        service.to = data.to || service.to
-        service.langitude = data.langitude || service.langitude
-        service.longitude = data.longitude || service.longitude
-        service.includes = data.includes || service.includes
-        service.notIncludes = data.notIncludes || service.notIncludes
-        service.startDate = data.startDate || service.startDate
-        service.endDate = data.endDate || service.endDate
-        service.duration = data.duration || service.duration
-        service.tourLanguage = data.tourLanguage || service.tourLanguage
-        service.destination = data.destination || service.destination
-        service.destinationOtagID = data.destinationOtagID || service.destinationOtagID
-        service.providerName = data.providerName || service.providerName
-        service.departureDays = data.departureDays || service.departureDays
-        service.measurementUnit = data.measurementUnit || service.measurementUnit
-
-        service.save((err, service) => {
-            if (err) return res.send(err)
-        })
         return res.send({ message: "Service Updated" })
     })
 })

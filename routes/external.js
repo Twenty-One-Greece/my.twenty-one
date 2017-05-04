@@ -79,7 +79,7 @@ router.get('/hotel-one/:hotelID', (req, res) => {
 
 // Get All Services by Category
 router.get('/services/:userID/:serviceCategory', (req, res) => {
-    Service.find({category: req.params.serviceCategory, userID: req.params.userID}, (err, services) => {
+    Service.find({ category: req.params.serviceCategory, userID: req.params.userID }, (err, services) => {
         if (err) return res.send(err)
         return res.send(services)
     })
@@ -87,7 +87,7 @@ router.get('/services/:userID/:serviceCategory', (req, res) => {
 
 // Get All Services by Product
 router.get('/services-product/:userID/:product', (req, res) => {
-    Service.find({product: req.params.product, userID: req.params.userID}, (err, services) => {
+    Service.find({ product: req.params.product, userID: req.params.userID }, (err, services) => {
         if (err) return res.send(err)
         return res.send(services)
     })
@@ -95,11 +95,11 @@ router.get('/services-product/:userID/:product', (req, res) => {
 
 // Get All Featured Services by Product
 router.get('/services-product-featured/:userID/:product', (req, res) => {
-    Service.find({featured: true, product: req.params.product, userID: req.params.userID},
-    (err, services) => {
-        if (err) return res.send(err)
-        return res.send(services)
-    })
+    Service.find({ featured: true, product: req.params.product, userID: req.params.userID },
+        (err, services) => {
+            if (err) return res.send(err)
+            return res.send(services)
+        })
 })
 
 // Get All Featured Destinations
@@ -121,10 +121,18 @@ router.get('/destinations-include/:userID', (req, res) => {
 // Get All Services by Product, Destination (from / to),  Category
 router.get('/services-destination-category/:userID/:product/:destination/:category', (req, res) => {
     Service.find({
-        $and: [{product: req.params.product}, {category: req.params.category}, {userID: req.params.userID}],
-        $or: [{ from: req.params.destination }, { to: req.params.destination }]
-    },
-    (err, services) => {
+            $and: [{ product: req.params.product }, { category: req.params.category }, { userID: req.params.userID }],
+            $or: [{ from: req.params.destination }, { to: req.params.destination }]
+        },
+        (err, services) => {
+            if (err) return res.send(err)
+            return res.send(services)
+        })
+})
+
+// Get All Destinations Available for Website
+router.get('/services-offers/:userID', (req, res) => {
+    Service.find({ offer: true, userID: req.params.userID }, (err, services) => {
         if (err) return res.send(err)
         return res.send(services)
     })
