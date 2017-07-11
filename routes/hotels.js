@@ -63,9 +63,9 @@ router.post('/update/:hotelID', (req, res) => {
     Hotel.findById(req.params.hotelID, (err, hotel) => {
         if (err) return res.send(err)
 
-        hotel.title       = data.title        || hotel.title
-        hotel.description = data.description  || hotel.description
-        hotel.featured    = data.featured     || false
+        hotel.title = data.title || hotel.title
+        hotel.description = data.description || hotel.description
+        hotel.featured = data.featured || false
 
         hotel.save((err, hotel) => {
             if (err) return res.send(err)
@@ -95,6 +95,19 @@ router.delete('/one-image/:hotelID/:fileName', (req, res) => {
             fs.unlink(Hotels_Img_Dir + req.params.fileName)        // Remove image file
             return res.send({ message: "Hotel Image Deleted" })
         })
+})
+
+router.post('/update-featured-image/:hotelID', (req, res) => {
+    const data = req.body
+
+    Hotel.findById(req.params.hotelID, (err, hotel) => {
+        if (err) return res.send(err)
+        hotel.featuredImage = data.featuredImage || hotel.featuredImage
+        hotel.save((err, hotel) => {
+            if (err) return res.send(err)
+        })
+        return res.send({ message: "Hotel Updated" })
+    })
 })
 
 
